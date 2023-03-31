@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:location/location.dart' as _location;
 
-
 class Maps extends StatefulWidget {
   final double long1;
   final double long2;
@@ -23,7 +22,6 @@ class Maps extends StatefulWidget {
 }
 
 class _MapsState extends State<Maps> {
-
   late MapController mapController = MapController.withPosition(
     initPosition: GeoPoint(latitude: widget.lat1, longitude: widget.long1),
     areaLimit: const BoundingBox.world(),
@@ -49,14 +47,7 @@ class _MapsState extends State<Maps> {
         actions: [
           IconButton(
               onPressed: () async {
-                GeoPoint geoPoint = await mapController.myLocation();
-                if (kDebugMode) {
-                  mapController.toString();
-                  print(geoPoint.latitude);
-                  print("000000000000000000000000000000000000000000000000000000000000");
-                  print(geoPoint.longitude);
-                }
-                //route();
+                route();
               },
               icon: const Icon(Icons.download))
         ],
