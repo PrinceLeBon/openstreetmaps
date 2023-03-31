@@ -1,8 +1,33 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
+import 'package:location/location.dart' as _location;
 import 'homepage.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  _location.Location location = _location.Location();
+
+  bool serviceEnabled;
+  _location.PermissionStatus permissionGranted;
+  _location.LocationData locationData;
+
+  serviceEnabled = await location.serviceEnabled();
+  if (!serviceEnabled) {
+    serviceEnabled = await location.requestService();
+    if (!serviceEnabled) {
+      return;
+    }
+  }
+
+  permissionGranted = await location.hasPermission();
+  if (permissionGranted == _location.PermissionStatus.denied) {
+    permissionGranted = await location.requestPermission();
+    if (permissionGranted != _location.PermissionStatus.granted) {
+      return;
+    }
+  }
+
   runApp(const MyApp());
 }
 
