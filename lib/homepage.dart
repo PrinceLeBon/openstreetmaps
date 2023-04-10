@@ -82,11 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (BuildContext context) => Maps(
-                                      long1: locations1.first.longitude,
-                                      long2: locations2.first.longitude,
-                                      lat1: locations1.first.latitude,
-                                      lat2: locations2.first.latitude)));
+                                  builder: (BuildContext context) => Maps()));
                         }
                       },
                       child: const Text("Go to the map"))
